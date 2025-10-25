@@ -63,12 +63,28 @@ body{
 
 .logo-accueil {
     margin: 0 auto;
-    height: 20rem;
+    height: 15rem;
     margin-top: 5rem;
 }
 
 .accueil h1 {
     font-size: 4rem;
+}
+
+.accueil-btns {
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+}
+
+.accueil-btns-item {
+    height: 8rem;
+    transition: transform 0.2s ease;
+}
+
+.accueil-btns-item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .wrap{
