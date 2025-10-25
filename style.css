@@ -95,4 +95,105 @@ h2{
     border:2px solid var(--pink-200); 
     border-radius:24px; 
     padding:28px
+
+}
+
+
+/* Section Recette et Ingrédients */ 
+
+.section-recette-ingredients {
+    max-width: 100%;
+}
+
+.recette-ingredients {
+    display: flex;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.recette, .ingredients {
+    max-width: 90%;
+    background-color: white;
+    border-radius: 30px;
+    flex: 0 0 50%;
+    padding: 2rem;
+    text-align: center;
+}
+
+.ul-ingredients {
+    max-width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.li-ingredients {
+    display: inline; 
+    margin: 0 0rem 1rem 2rem;
+    font-size: 13px;
+}
+
+.scroll-box {
+    background-color:#ffd6ce;
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+    justify-items: center;
+    align-items: center;
+    padding: 2rem 0 2rem 0;
+    margin-top: 2rem;
+}
+
+.scroll-card {
+    width: 85%;
+    max-height: 180px;
+    color: black;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scroll-card p {
+   padding-right: 1rem;
+}
+
+  /* — Personnalisation de la barre (WebKit/Chromium) — */
+.scroll-card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-card::-webkit-scrollbar-track {
+    background: rgba(255,255,255,.6);
+    border-radius: 999px;
+}
+
+.scroll-card::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.25);
+    border-radius: 999px;
+}
+
+.scroll-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,.35);
+}
+
+
+/* H3 pour la div "Recette" */
+
+h3{
+    font-family:"Kawaii Bubble", system-ui; 
+    color:var(--title); 
+    text-align: center;
+    font-size:24px;
+    letter-spacing:3px; 
+    margin:0 0 24px;
+    margin-top: 2rem;
+}
+
+.bouton-accueil {
+    display: block;
+    width: fit-content;
+    margin-left: auto; 
+    margin-right: 10rem;
 }
