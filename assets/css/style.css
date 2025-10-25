@@ -52,7 +52,23 @@ body{
 
 /* Page d'accueil */
 .accueil {
-    background: url(../images/);
+    background: url(../images/background2.png) no-repeat center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+}
+
+.logo-accueil {
+    margin: 0 auto;
+    height: 20rem;
+    margin-top: 5rem;
+}
+
+.accueil h1 {
+    font-size: 4rem;
 }
 
 .wrap{
