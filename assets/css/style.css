@@ -1,0 +1,387 @@
+:root{
+--background:#fff7f3;
+--pink-150:#fff0eb;
+--pink-200:#ffd6ce;
+--pink-400:#ffa897;
+--text:rgba(0, 0, 0, 0.38);
+--title:#ff8e7b;
+--radius: 26px;
+--ring: rgba(255,142,123,.45);
+}
+
+*{
+    box-sizing:border-box; 
+    margin:0; 
+    padding:0
+}
+
+@font-face {
+  font-family: 'Kawaii Bubble';
+  src: url('./assets/KawaiiBubble-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.logo{
+    width:100px; 
+    height:auto; 
+    margin-bottom:10px;
+}
+
+h1{
+  font-family: 'Kawaii Bubble', cursive;
+  font-size: 50px;
+  color: var(--title);
+  letter-spacing: 4px;
+}
+
+body{
+    margin:0; font-family:"Nunito", ui-sans-serif, system-ui; 
+    background:var(--background); 
+    color:var(--text)
+}
+
+/* Loading Page */
+.loading {
+    height: 100vh;
+    background-color: #febeb2; /* rose foncé */
+    background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
+    linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
+    background-size: 100px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo-loading {
+    margin: 0 auto;
+    height: 20rem;
+    margin-top: 5rem;
+}
+
+.load-title {
+    font-size: 1.5rem;
+    color: var(--title);
+    font-family: 'Kawaii Bubble';
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    width: 20rem;
+    height: 2rem;
+    border: 2px solid var(--title);
+    border-radius: .5rem;
+    overflow: hidden;
+    background: transparent;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    padding: .2rem;
+}
+
+.progress {
+    width: 0%;
+    height: 100%;
+    border-radius: .2rem;
+    justify-content: center;
+    background-color: var(--title);
+    transition: width 0.1s linear;
+}
+
+/* Page d'accueil */
+.accueil {
+    background-color: #febeb2; /* rose foncé */
+    background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
+    linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
+    background-size: 100px 100px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+}
+
+.logo-accueil {
+    margin: 0 auto;
+    height: 15rem;
+    margin-top: 5rem;
+}
+
+.accueil h1 {
+    font-size: 4rem;
+}
+
+.accueil-btns {
+    margin: 0 auto;
+    display: flex;
+    gap: 4rem;
+}
+
+.accueil-btns-item {
+    height: 8rem;
+    transition: transform 0.2s ease;
+}
+
+.accueil-btns-item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.btn-song {
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--title);
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 4rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-song:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+.song-img {
+    height: 3rem;
+    width: 3rem;
+    margin-left: 1rem;
+}
+
+/* Choix des ingredients */
+.form-recette {
+  background: url(../images/background2.png) no-repeat center/cover;
+  min-height: 100vh;
+  display:flex; 
+  align-items:center; 
+  justify-content:center;
+  padding: 48px 20px;
+}
+
+.sheet{
+  width: min(1100px, 100%);
+  background: var(--pink-150);
+  border: 2px solid var(--pink-200);
+  border-radius: 36px;
+  box-shadow: 0 20px 40px rgba(229,107,88,.12);
+  padding: 48px clamp(20px, 6vw, 72px);
+  text-align:center;
+}
+
+.form-logo{ 
+    width:86px; 
+    height:auto; 
+    margin: 0 auto; 
+    display:block;
+}
+
+.form-title{
+  font-family:"Kawaii Bubble", system-ui;
+  font-size: 55px;
+  color: var(--title);
+  letter-spacing: 6px;
+  margin: 20px 20px 50px;
+}
+
+.form-sub{
+  font-family:"Kawaii Bubble", system-ui;
+  font-size: 30px;
+  color: var(--title);
+  letter-spacing: 2px;
+  margin: 6px 0 26px;
+}
+
+.field{ 
+    margin: 40px 0 18px; 
+}
+
+.searchbar {
+  position: relative;
+  display:flex; 
+  max-width: 500px; 
+  gap:12px;
+  padding: 12px 48px 12px 16px; 
+  border:2px solid var(--pink-200);
+  border-radius: 999px;
+  background:#fff;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.04);
+  margin: 0 auto;
+}
+
+.searchbar:focus-within{ 
+    outline: none; 
+    box-shadow: 0 0 0 4px var(--ring); 
+    border-color: var(--pink-400); 
+}
+
+.searchbar input{ 
+    all:unset; 
+    text-align: start;
+    flex:1; 
+    font-size:16px; 
+    color:#8f7d79; 
+}
+
+.searchbar input::placeholder{ 
+    color:#c6a9a4; 
+}
+
+.recette-btns {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.recette-btns-item {
+    height: 7rem;
+    transition: transform 0.2s ease;
+}
+
+.recette-btns-item:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+/* Section Recette et Ingrédients */ 
+
+.logo-ingredient {
+    height: 5rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+}
+
+.section-recette-ingredients {
+    max-width: 100%;
+    background-color: #febeb2; /* rose foncé */
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
+      background-size: 100px 100px;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      flex-direction: column;
+      flex-shrink: 1;
+}
+
+.recette-ingredients {
+    display: flex;
+    max-width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    flex: auto;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.recette, .ingredients {
+    max-width: 90%;
+    background-color: white;
+    border-radius: 30px;
+    flex: 0 0 50%;
+    padding: 2rem;
+    text-align: center;
+    height: 70vh;
+}
+
+.img-recette {
+    height: 7rem;
+    width: 7rem;
+    border-radius: 50%;
+}
+
+.ul-ingredients {
+    max-width:100%;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+}
+
+.li-ingredients {
+    display: inline; 
+    margin: 0 0rem 1rem 2rem;
+    font-size: 13px;
+}
+
+.scroll-box {
+    background-color:#ffd6ce;
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.06);
+    justify-items: center;
+    align-items: center;
+    padding: 2rem 0 2rem 0;
+    margin-bottom: 1rem;
+}
+
+.scroll-card {
+    width: 85%;
+    max-height: 180px;
+    color: black;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.scroll-card p {
+   padding-right: 1rem;
+}
+
+  /* — Personnalisation de la barre (WebKit/Chromium) — */
+.scroll-card::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-card::-webkit-scrollbar-track {
+    background: rgba(255,255,255,.6);
+    border-radius: 999px;
+}
+
+.scroll-card::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.25);
+    border-radius: 999px;
+}
+
+.scroll-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,.35);
+}
+
+.btn-accueil {
+    height: 6rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: 2rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-accueil:hover {
+    transform: scale(1.1);
+}
+
+
+/* H3 pour la div "Recette" */
+
+h3{
+    font-family:"Kawaii Bubble", system-ui; 
+    color:var(--title); 
+    text-align: center;
+    font-size:24px;
+    letter-spacing:3px; 
+    margin:0 0 24px;
+    margin-top: 2rem;
+}
+
+.bouton-accueil {
+    display: block;
+    width: fit-content;
+    margin-left: auto; 
+    margin-right: 10rem;
+}
+
