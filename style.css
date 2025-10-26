@@ -138,6 +138,7 @@ h2{
 }
 
 .scroll-box {
+    box-sizing: border-box;
     background-color:#ffd6ce;
     border-radius: 30px;
     box-shadow: 0 6px 20px rgba(0,0,0,.06);
