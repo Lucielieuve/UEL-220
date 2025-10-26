@@ -52,8 +52,11 @@ body{
 
 /* Page d'accueil */
 .accueil {
-    background: url(../images/background2.png) no-repeat center;
-    background-size: cover;
+    background-color: #febeb2; /* rose foncé */
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
+      background-size: 100px 100px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -163,8 +166,23 @@ h2{
 
 /* Section Recette et Ingrédients */ 
 
+.logo-ingredient {
+    height: 5rem;
+    margin: 3rem;
+}
+
 .section-recette-ingredients {
     max-width: 100%;
+    background-color: #febeb2; /* rose foncé */
+      background-image:
+        linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
+      background-size: 100px 100px;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      margin: 0 auto;
+      flex-direction: column;
 }
 
 .recette-ingredients {
@@ -184,6 +202,8 @@ h2{
     flex: 0 0 50%;
     padding: 2rem;
     text-align: center;
+    height: auto;
+    margin-bottom: 3rem;
 }
 
 .ul-ingredients {
@@ -238,6 +258,12 @@ h2{
 
 .scroll-card::-webkit-scrollbar-thumb:hover {
     background: rgba(0,0,0,.35);
+}
+
+.img-recette {
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
 }
 
 
