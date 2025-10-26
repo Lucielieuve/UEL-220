@@ -50,13 +50,62 @@ body{
     color:var(--text)
 }
 
+/* Loading Page */
+.loading {
+    height: 100vh;
+    background-color: #febeb2; /* rose foncé */
+    background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
+    linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
+    background-size: 100px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.logo-loading {
+    margin: 0 auto;
+    height: 20rem;
+    margin-top: 5rem;
+}
+
+.load-title {
+    font-size: 1.5rem;
+    color: var(--title);
+    font-family: 'Kawaii Bubble';
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    width: 20rem;
+    height: 2rem;
+    border: 2px solid var(--title);
+    border-radius: .5rem;
+    overflow: hidden;
+    background: transparent;
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    padding: .2rem;
+}
+
+.progress {
+    width: 50%;
+    height: 100%;
+    border-radius: .2rem;
+    justify-content: center;
+    background-color: var(--title);
+    transition: width 0.1s linear;
+}
+
 /* Page d'accueil */
 .accueil {
     background-color: #febeb2; /* rose foncé */
-      background-image:
-        linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
-        linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
-      background-size: 100px 100px;
+    background-image:
+    linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
+    linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
+    background-size: 100px 100px;
     height: 100vh;
     display: flex;
     flex-direction: column;
