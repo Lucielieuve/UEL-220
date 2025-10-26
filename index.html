@@ -24,31 +24,48 @@
         </button>
     </section>
 
-    <header>
-        <img class="logo" src="./assets/images/logo.png">
-        <h1>Cookly</h1>
-    </header>
+    <br> <!--A supprimer à la fin -->
 
-    <main class="wrap panel">
-        <h2>Choix des ingredients</h2>
+    <!-- Formulaire recette -->
+
+    <section class="form-recette">
+        <div class="sheet">
+    <!-- Logo + titres -->
+            <img class="form-logo" src="./assets/images/logo.png" alt="Logo Cookly">
+            <h1 class="form-title">CooklyNami</h1>
+            <h2 class="form-sub">Choix des ingredients</h2>
+
+    <!-- Formulaire -->
+        <form class="form" action="#" method="get">
+      <!-- Barre 1 -->
             <div class="field">
                 <div class="searchbar">
-                    <input id="want" name="want" type="search" placeholder="Je veux …" />
+                    <input id="want" name="want" type="search" placeholder="Je veux…">
                 </div>
             </div>
 
+      <!-- Barre 2 -->
             <div class="field">
                 <div class="searchbar">
-                    <input id="dont" name="dont" type="search" placeholder="Je ne veux pas …" />
-                </div>
-            </div>
+                    <input id="dont" name="dont" type="search" placeholder="Je ne veux pas…">
+        </div>
+      </div>
 
-            <div class="field">
-                <div class="searchbar">
-                    <input id="origin" name="origin" type="search" placeholder="Origine de la recette" />
-                </div>
-            </div>
-    </main>
+      <!-- Barre 3 -->
+      <div class="field">
+        <div class="searchbar">
+          <input id="origin" name="origin" type="search" placeholder="Origine de la recette">
+        </div>
+      </div>
+
+      <!-- Boutons recette -->
+        <div class="recette-btns">
+            <img src="./assets/images/button (1).png" href="#" alt="preparer ma recette" class="recette-btns-item">
+            <img src="./assets/images/button (2).png" href="#" alt="choisir pour moi" class="recette-btns-item">
+        </div>
+        </form>
+        </div>
+    </section>
 
     <section class="section-recette-ingredients">
 
