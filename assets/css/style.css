@@ -206,6 +206,12 @@ h2{
     margin-bottom: 3rem;
 }
 
+.img-recette {
+    height: 8rem;
+    width: 8rem;
+    border-radius: 50%;
+}
+
 .ul-ingredients {
     max-width:100%;
     display: flex;
@@ -226,7 +232,7 @@ h2{
     justify-items: center;
     align-items: center;
     padding: 2rem 0 2rem 0;
-    margin-top: 2rem;
+    margin-top: 1rem;
 }
 
 .scroll-card {
@@ -260,11 +266,7 @@ h2{
     background: rgba(0,0,0,.35);
 }
 
-.img-recette {
-    height: 10rem;
-    width: 10rem;
-    border-radius: 50%;
-}
+
 
 
 /* H3 pour la div "Recette" */
