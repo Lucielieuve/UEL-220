@@ -168,7 +168,8 @@ h2{
 
 .logo-ingredient {
     height: 5rem;
-    margin: 3rem;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
 }
 
 .section-recette-ingredients {
@@ -179,10 +180,12 @@ h2{
         linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
       background-size: 100px 100px;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       align-items: center;
       margin: 0 auto;
       flex-direction: column;
+      flex-shrink: 1;
 }
 
 .recette-ingredients {
@@ -202,13 +205,12 @@ h2{
     flex: 0 0 50%;
     padding: 2rem;
     text-align: center;
-    height: auto;
-    margin-bottom: 3rem;
+    height: 70vh;
 }
 
 .img-recette {
-    height: 8rem;
-    width: 8rem;
+    height: 7rem;
+    width: 7rem;
     border-radius: 50%;
 }
 
@@ -232,7 +234,7 @@ h2{
     justify-items: center;
     align-items: center;
     padding: 2rem 0 2rem 0;
-    margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .scroll-card {
@@ -266,7 +268,17 @@ h2{
     background: rgba(0,0,0,.35);
 }
 
+.btn-accueil {
+    height: 6rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: 2rem;
+    transition: transform 0.2s ease;
+}
 
+.btn-accueil:hover {
+    transform: scale(1.1);
+}
 
 
 /* H3 pour la div "Recette" */
