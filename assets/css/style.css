@@ -17,7 +17,7 @@
 
 @font-face {
   font-family: 'Kawaii Bubble';
-  src: url('./assets/KawaiiBubble-Regular.ttf') format('truetype');
+  src: url('../fonts/KawaiiBubble-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -268,7 +268,7 @@ body{
         linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
         linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
       background-size: 100px 100px;
-      height: 100vh;
+      height: auto;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -283,7 +283,7 @@ body{
     margin-left: auto;
     margin-right: auto;
     flex: auto;
-    gap: 3rem;
+    gap: 2rem;
     justify-content: center;
 }
 
@@ -294,7 +294,7 @@ body{
     flex: 0 0 50%;
     padding: 2rem;
     text-align: center;
-    height: 70vh;
+    height: auto;
 }
 
 .img-recette {
@@ -314,6 +314,11 @@ body{
     display: inline; 
     margin: 0 0rem 1rem 2rem;
     font-size: 13px;
+}
+
+.img-ingredient {
+    max-height: 3rem;
+    max-width: 3rem;
 }
 
 .scroll-box {
@@ -377,6 +382,16 @@ h3{
     color:var(--title); 
     text-align: center;
     font-size:24px;
+    letter-spacing:3px; 
+    margin:0 0 24px;
+    margin-top: 2rem;
+}
+
+h2{
+    font-family:"Kawaii Bubble", system-ui; 
+    color:var(--title); 
+    text-align: center;
+    font-size:28px;
     letter-spacing:3px; 
     margin:0 0 24px;
     margin-top: 2rem;
