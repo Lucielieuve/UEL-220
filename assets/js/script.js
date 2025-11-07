@@ -96,7 +96,6 @@ $(document).one("click", function() {
 
 
 });
-$(document).ready(function () {
 
 // Appel de l'API
 const API = "https://www.themealdb.com/api/json/v1/1";
