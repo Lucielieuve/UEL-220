@@ -8,6 +8,8 @@
 </head>
 
 <body>
+    <audio id="background-music" src="./assets/songs/Jamie Bathgate - Homemade Apple Pie.mp3" loop></audio>
+
     <!-- Page loading -->
      <section class="loading">
         <img src="./assets/images/logo.png" class="logo-loading" alt="logo de cookly">
@@ -18,13 +20,13 @@
      </section>
 
     <!-- Page d'accueil -->
-    <section class="accueil">
+    <section class="accueil section-active">
         <img src="./assets/images/logo.png" class="logo-accueil" alt="logo de cookly">
         <h1>Cookly</h1>
         <!-- boutons jeu -->
         <div class="accueil-btns">
-            <img src="./assets/images/button (1).png" href="#" alt="preparer ma recette" class="accueil-btns-item">
-            <img src="./assets/images/button (2).png" href="#" alt="choisir pour moi" class="accueil-btns-item">
+            <img src="./assets/images/button (1).png" href="#" alt="preparer ma recette" class="accueil-btns-item" id="prep-recette">
+            <img src="./assets/images/button (2).png" href="#" alt="choisir pour moi" class="accueil-btns-item btn-aleatoire" id="choisir-moi">
         </div>
         <!-- Bouton son -->
         <button class="btn-song">
@@ -67,7 +69,7 @@
       <!-- Boutons recette -->
         <div class="recette-btns">
             <img src="./assets/images/button (1).png" href="#" alt="preparer ma recette" class="recette-btns-item">
-            <img src="./assets/images/button (2).png" href="#" alt="choisir pour moi" class="recette-btns-item">
+            <img src="./assets/images/button (2).png" href="#" alt="choisir pour moi" class="recette-btns-item  btn-aleatoire">
         </div>
         </form>
         </div>
@@ -142,7 +144,7 @@
 
         </div>
 
-        <img src="./assets/images/btn-accueil.png" class="btn-accueil" alt="bouton accueil">
+        <img src="./assets/images/btn-accueil.png" class="btn-accueil" alt="bouton accueil" id="accueil-recette">
     </section>
 </body>
 
