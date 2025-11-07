@@ -346,7 +346,7 @@ body{
         linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
         linear-gradient(rgba(255,255,255,0.35) 50%, transparent 50%);
       background-size: 120px 120px;
-      min-height: 80vh;
+      height: auto;
       overflow: hidden;
       display: flex;
       align-items: center;
@@ -510,6 +510,7 @@ h2{
     margin-left: auto; 
     margin-right: 10rem;
 }
+
 
 
 
