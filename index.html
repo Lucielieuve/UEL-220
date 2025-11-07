@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Cookly</title>
+    <title>CooklyNami</title>
 </head>
 
 <body>
@@ -50,31 +50,46 @@
                 <div class="searchbar">
                     <input id="want" name="want" type="search" placeholder="Je veux…">
                 </div>
+
+                <!-- Picker d'ingrédients -->
+                <div id="ingredient-picker" class="ingredient-picker">
+                    <div id="selected-ingredients" class="food"></div>
+                     <div id="suggested-ingredients" class="suggestions"></div>
+                </div>
             </div>
 
       <!-- Barre 2 -->
             <div class="field">
                 <div class="searchbar">
                     <input id="dont" name="dont" type="search" placeholder="Je ne veux pas…">
-        </div>
-      </div>
+                </div>
+                <div id="dont-picker" class="ingredient-picker">
+                    <div id="excluded-ingredients" class="food"></div>
+                    <div id="suggested-dont" class="suggestions"></div>
+                </div>
+            </div>
 
       <!-- Barre 3 -->
-      <div class="field">
-        <div class="searchbar">
-          <input id="origin" name="origin" type="search" placeholder="Origine de la recette">
-        </div>
-      </div>
+            <div class="field">
+                <div class="searchbar">
+                    <input id="origin" name="origin" type="search" placeholder="Origine de la recette">
+                </div>
+                <div id="origin-picker" class="ingredient-picker">
+                    <div id="origin-selected" class="food"></div>       
+                    <div id="suggested-origin" class="suggestions"></div> 
+                </div>
+            </div>
 
       <!-- Boutons recette -->
         <div class="recette-btns">
-            <img src="./assets/images/button (1).png" href="#" alt="preparer ma recette" class="recette-btns-item">
-            <img src="./assets/images/button (2).png" href="#" alt="choisir pour moi" class="recette-btns-item  btn-aleatoire">
+            <img src="./assets/images/button (3).png" href="#" alt="trouver une recette" class="recette-btns-item">
+            <img src="./assets/images/button (4).png" href="#" alt="recette aléatoire" class="recette-btns-item btn-aleatoire">
         </div>
         </form>
         </div>
     </section>
 
+    <!-- Section recette et ingrédients -->
     <section class="section-recette-ingredients">
         <img src="./assets/images/logo.png" class="logo-ingredient" alt="logo de cookly">
 
@@ -82,11 +97,11 @@
 
         <div class="recette">
             <img src="./assets/images/vz94r81760534692.jpg" class="img-recette" alt="img-recette">
-            <h3>Titre de la recette</h3>
+            <h3 class="recette-titre">Titre de la recette</h3>
             <img src="./assets/images/gb.png" class="logo-pays" alt="logo-pays"><br>
             <div class="scroll-box">
                 <div class="scroll-card" tabindex="0">
-                    <p>Preheat the oven to 450 degrees F (230 degrees C). Place falafel on a baking sheet.<br>
+                    <p class="recette-description">Preheat the oven to 450 degrees F (230 degrees C). Place falafel on a baking sheet.<br>
                     Bake in the preheated oven until heated through, 8 to 10 minutes.<br>
                     While falafel bake, whisk tahini, water, lemon juice, garlic, and paprika together in a bowl.<br>
                     Du texte en plus pour tester le défilement...
@@ -105,37 +120,27 @@
             <h2>Ingredients</h2>
             <ul class="ul-ingredients">
                 <li class="li-ingredients">
-                    <img src="" alt="img-ingredient">
+                    <img src="" alt="Ingrédient" class="img-ingredient">
                     <p class="nom-ingredient">Nom de l'ingrédient</p>
                     <p class="quantite">Quantité</p>
                 </li>
                 <li class="li-ingredients">
-                    <img src="" alt="img-ingredient">
+                    <img src="" alt="Ingrédient" class="img-ingredient">
                     <p class="nom-ingredient">Nom de l'ingrédient</p>
                     <p class="quantite">Quantité</p>
                 </li>
                 <li class="li-ingredients">
-                    <img src="" alt="img-ingredient">
+                    <img src="" alt="Ingrédient" class="img-ingredient">
                     <p class="nom-ingredient">Nom de l'ingrédient</p>
                     <p class="quantite">Quantité</p>
                 </li>
                 <li class="li-ingredients">
-                    <img src="" alt="img-ingredient">
+                    <img src="" alt="Ingrédient" class="img-ingredient">
                     <p class="nom-ingredient">Nom de l'ingrédient</p>
                     <p class="quantite">Quantité</p>
                 </li>
                 <li class="li-ingredients">
-                    <img src="" alt="img-ingredient">
-                    <p class="nom-ingredient">Nom de l'ingrédient</p>
-                    <p class="quantite">Quantité</p>
-                </li>
-                <li class="li-ingredients">
-                    <img src="" alt="img-ingredient">
-                    <p class="nom-ingredient">Nom de l'ingrédient</p>
-                    <p class="quantite">Quantité</p>
-                </li>
-                <li class="li-ingredients">
-                    <img src="" alt="img-ingredient">
+                    <img src="" alt="Ingrédient" class="img-ingredient">
                     <p class="nom-ingredient">Nom de l'ingrédient</p>
                     <p class="quantite">Quantité</p>
                 </li>
@@ -146,6 +151,10 @@
 
         <img src="./assets/images/btn-accueil.png" class="btn-accueil" alt="bouton accueil" id="accueil-recette">
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="assets/js/script.js"></script>   
+    
 </body>
 
 <!-- Appel fichiers js -->
