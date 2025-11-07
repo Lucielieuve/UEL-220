@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/css/style.css">
-    <title>Cookly</title>
+    <title>CooklyNami</title>
 </head>
 
 <body>
@@ -48,26 +48,40 @@
                 <div class="searchbar">
                     <input id="want" name="want" type="search" placeholder="Je veux…">
                 </div>
+
+                <!-- Picker d'ingrédients -->
+                <div id="ingredient-picker" class="ingredient-picker">
+                    <div id="selected-ingredients" class="food"></div>
+                     <div id="suggested-ingredients" class="suggestions"></div>
+                </div>
             </div>
 
       <!-- Barre 2 -->
             <div class="field">
                 <div class="searchbar">
                     <input id="dont" name="dont" type="search" placeholder="Je ne veux pas…">
-        </div>
-      </div>
+                </div>
+                <div id="dont-picker" class="ingredient-picker">
+                    <div id="excluded-ingredients" class="food"></div>
+                    <div id="suggested-dont" class="suggestions"></div>
+                </div>
+            </div>
 
       <!-- Barre 3 -->
-      <div class="field">
-        <div class="searchbar">
-          <input id="origin" name="origin" type="search" placeholder="Origine de la recette">
-        </div>
-      </div>
+            <div class="field">
+                <div class="searchbar">
+                    <input id="origin" name="origin" type="search" placeholder="Origine de la recette">
+                </div>
+                <div id="origin-picker" class="ingredient-picker">
+                    <div id="origin-selected" class="food"></div>       
+                    <div id="suggested-origin" class="suggestions"></div> 
+                </div>
+            </div>
 
       <!-- Boutons recette -->
         <div class="recette-btns">
-            <img src="./assets/images/button (1).png" href="#" alt="preparer ma recette" class="recette-btns-item">
-            <img src="./assets/images/button (2).png" href="#" alt="choisir pour moi" class="recette-btns-item">
+            <img src="./assets/images/button (3).png" href="#" alt="trouver une recette" class="recette-btns-item">
+            <img src="./assets/images/button (4).png" href="#" alt="recette aléatoire" class="recette-btns-item">
         </div>
         </form>
         </div>
