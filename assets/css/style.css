@@ -236,11 +236,77 @@ body{
     color:#c6a9a4; 
 }
 
+.ingredient-picker {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.suggestions {
+  display: none;
+  position: absolute;
+  top: 100%;  
+  left: 0; right: 0;
+  z-index: 50;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  max-height: 220px;
+  overflow: auto;
+  margin-top: .25rem;
+}
+.suggestion-item { 
+    padding: .5rem .75rem; 
+    cursor: pointer; 
+}
+
+.suggestion-item:hover,
+.suggestion-item[aria-selected="true"] { 
+    background: #f1f5f9; 
+}
+
+/* Zone de chip */
+#selected-ingredients, #excluded-ingredients, #origin-selected {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+
+.ingredient-chip {
+  display: inline-flex; 
+  align-items: center; 
+  gap: .5rem;
+  padding: .3rem .6rem; 
+  border: 1px solid #e5e7eb; 
+  border-radius: 999px;
+  background: #fff;
+}
+.ingredient-chip img { 
+    width: 28px; 
+    height: 28px; 
+    object-fit: contain; 
+    display: block; }
+
+.ingredient-chip .remove-chip {
+  border: 0; 
+  background: transparent; 
+  cursor: pointer;
+  font-size: 1rem; 
+  line-height: 1;
+}
+
+.origin-chip { 
+    padding: .3rem .6rem; 
+}
+
 .recette-btns {
     margin: auto;
     display: flex;
     justify-content: center;
     gap: 4rem;
+    margin-top: 6rem;
 }
 
 .recette-btns-item {
