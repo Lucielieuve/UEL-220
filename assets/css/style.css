@@ -319,6 +319,11 @@ body{
     cursor: pointer;
 }
 
+.btn-accueil:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 /* Section Recette et Ingrédients */ 
 
 .logo-ingredient {
@@ -360,7 +365,13 @@ body{
     flex: 0 0 50%;
     padding: 2rem;
     text-align: center;
-    height: auto;
+}
+
+.recette {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .img-recette {
@@ -374,17 +385,39 @@ body{
     display: flex;
     flex-wrap: wrap;
     list-style: none;
+    margin-top: 2rem;
 }
 
 .li-ingredients {
-    display: inline; 
-    margin: 0 0rem 1rem 2rem;
+    flex: 1 0 33.33%;  
+    display: inline;
     font-size: 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 33.33%;
+    box-sizing: border-box;
+    padding: .5rem;
+}
+
+/* Responsive pour les ingrédients */
+@media (max-width: 800px) {
+  .li-ingredients {
+    flex: 1 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 500px) {
+  .li-ingredients {
+    flex: 1 0 100%;
+    max-width: 100%;
+  }
 }
 
 .img-ingredient {
-    max-height: 3rem;
-    max-width: 3rem;
+    max-height: 4rem;
+    max-width: 4rem;
 }
 
 .scroll-box {
@@ -394,12 +427,12 @@ body{
     justify-items: center;
     align-items: center;
     padding: 2rem 0 2rem 0;
-    margin-bottom: 1rem;
+    align-self: flex-end;
 }
 
 .scroll-card {
     width: 85%;
-    max-height: 180px;
+    max-height: 300px;
     color: black;
     overflow-y: auto;
     overflow-x: hidden;
@@ -469,4 +502,5 @@ h2{
     margin-left: auto; 
     margin-right: 10rem;
 }
+
 

@@ -1,3 +1,5 @@
+$(document).ready(function () {
+
 // Appel de l'API
 const API = "https://www.themealdb.com/api/json/v1/1";
 
@@ -328,3 +330,78 @@ function setupOriginPicker() {
 
 setupOriginPicker();
 
+
+
+// Fonctionnalité recette / ingrédients
+
+$(".btn-accueil").on('click', function () {
+        $(".accueil").fadeIn();
+        $(this).toggleClass('active');
+    });
+
+    const $sectionRecette = $('.section-recette-ingredients').hide();
+
+    // Affiche la section + (optionnel) bouton actif
+    $('.recette-btns-item').on('click', function () {
+        $sectionRecette.fadeIn();
+        $(this).toggleClass('active');
+    });
+
+    // Map des zones -> codes drapeaux
+    function countryCode(area) {
+        const map = {
+            American: 'us', British: 'gb', Canadian: 'ca', Chinese: 'cn',
+            Croatian: 'hr', Dutch: 'nl', Egyptian: 'eg', Filipino: 'ph',
+            French: 'fr', Greek: 'gr', Indian: 'in', Irish: 'ie',
+            Italian: 'it', Jamaican: 'jm', Japanese: 'jp', Kenyan: 'ke',
+            Malaysian: 'my', Mexican: 'mx', Moroccan: 'ma', Polish: 'pl',
+            Portuguese: 'pt', Russian: 'ru', Spanish: 'es', Thai: 'th',
+            Tunisian: 'tn', Turkish: 'tr', Vietnamese: 'vn'
+        };
+        return map[area] || 'un'; // fallback ONU
+    }
+
+    // Bouton #2 : recette aléatoire
+    $('.recette-btns-item').eq(1).on('click', function () {
+        // (facultatif) état chargement
+        $('.recette-titre').text('Chargement...');
+        $('.liste-ingredients').empty();
+
+        $.getJSON('https://www.themealdb.com/api/json/v1/1/random.php', function (data) {
+            const meal = data?.meals?.[0];
+            if (!meal) return;
+
+            // Titre / image / description
+            $('.img-recette').attr('src', meal.strMealThumb || '');
+            $('.recette-titre').text(meal.strMeal || '');
+            $('.recette-description').text(meal.strInstructions || '');
+
+            // Drapeau pays
+            const area = meal.strArea || '';
+            const flagUrl = `https://flagcdn.com/48x36/${countryCode(area)}.png`;
+            $('.logo-pays').attr('src', flagUrl).attr('alt', area);
+
+            // Ingrédients : on vide puis on (re)ajoute
+            const $ul = $('.ul-ingredients').empty();
+            for (let i = 1; i <= 20; i++) {
+                const ingredient = (meal[`strIngredient${i}`] || '').trim();
+                const measure = (meal[`strMeasure${i}`] || '').trim();
+                if (!ingredient) break;
+
+                const imgUrl = `https://www.themealdb.com/images/ingredients/${encodeURIComponent(ingredient)}.png`;
+
+                const $li = $(`
+          <li class="li-ingredients">
+            <img class="img-ingredient" src="${imgUrl}" alt="${ingredient}">
+            <p class="nom-ingredient">${ingredient}</p>
+            <p class="quantite">${measure}</p>
+          </li>
+        `);
+
+                $ul.append($li);
+            }
+        }).fail(function () {
+            $('.recette-titre').text('Erreur de chargement');
+        });
+    });
+  });
