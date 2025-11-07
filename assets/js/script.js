@@ -502,4 +502,3 @@ $(".btn-accueil").on('click', function () {
             $('.recette-titre').text('Erreur de chargement');
         });
     });
-  });
