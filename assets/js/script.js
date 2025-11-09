@@ -76,7 +76,7 @@ $(document).ready(function () {
 
   // === GESTION DU SON ===
   $('.btn-song')
-  .off('click.sound') // empêche les doublons
+  .off('click.sound')
   .on('click.sound', function (e) {
     e.preventDefault();
     e.stopPropagation();
