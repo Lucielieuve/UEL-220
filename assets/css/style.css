@@ -38,7 +38,7 @@ h1{
 body{
     margin:0; font-family:"Nunito", ui-sans-serif, system-ui; 
     background:var(--background); 
-    color:var(--text)
+    color:var(--text);
     background-color: #febeb2; /* rose foncé */
     background-image:
     linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
@@ -382,6 +382,24 @@ body{
     align-items: center;
 }
 
+.ingredients {
+  display: flex;
+  flex-direction: column;
+}
+
+.ingredients > h2 {
+  flex: 0 0 auto;
+}
+
+
+.ul-ingredients {
+  flex: 1 1 auto;  /* prend tout l’espace disponible */
+  min-height: 0;   /* important pour autoriser le scroll dans un flex parent */
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: .5rem;
+}
+
 .img-recette {
     height: 7rem;
     width: 7rem;
@@ -446,6 +464,15 @@ body{
     overflow-x: hidden;
 }
 
+.scroll-card-ingredients {
+    width: 100%;
+    max-height: 400px;
+    color: black;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+
 .scroll-card p {
    padding-right: 1rem;
 }
@@ -466,6 +493,24 @@ body{
 }
 
 .scroll-card::-webkit-scrollbar-thumb:hover {
+    background: rgba(0,0,0,.35);
+}
+
+.scroll-card-ingredients::-webkit-scrollbar {
+    width: 8px;
+}
+
+.scroll-card-ingredients::-webkit-scrollbar-track {
+    background: rgba(255,255,255,.6);
+    border-radius: 999px;
+}
+
+.scroll-card-ingredients::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.25);
+    border-radius: 999px;
+}
+
+.scroll-card-ingredients::-webkit-scrollbar-thumb:hover {
     background: rgba(0,0,0,.35);
 }
 
@@ -510,7 +555,3 @@ h2{
     margin-left: auto; 
     margin-right: 10rem;
 }
-
-
-
-
