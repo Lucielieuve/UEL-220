@@ -504,5 +504,8 @@ async function remplirRecette(url) {
             }
         }).fail(function () {
             $('.recette-titre').text('Erreur de chargement');
+            
         });
+        
     });
+ 
