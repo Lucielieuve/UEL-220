@@ -50,9 +50,8 @@ $(document).ready(function () {
           // Lancer la musique seulement au premier chargement
           if (!musicStarted) {
             music.volume = 0.5;
-            music.play()
-              .then(() => { musicStarted = true; })
-              .catch(err => console.log("Lecture auto bloquée :", err));
+            music.play().catch(err => console.log("Lecture auto bloquée :", err));
+            musicStarted = true;
           }
         });
       }, 300);
@@ -75,37 +74,22 @@ $(document).ready(function () {
   });
 
   // === GESTION DU SON ===
-  $('.btn-song')
-    .off('click.sound') // empêche les doublons
-    .on('click.sound', function (e) {
-      e.preventDefault();
-      e.stopPropagation();
+  $(".btn-song").click(function () {
+    const icon = $(this).find(".song-img");
 
-      if (!music) return console.warn('Audio introuvable');
-
-      if (music.paused) {
-        music.muted = false;
-        music.volume = 0.5;
-        music.play()
-          .then(() => console.log('▶️ playing'))
-          .catch(err => console.log('play error:', err));
-      } else {
-        music.pause();
-        console.log('⏸️ paused');
-      }
-    });
-
-  $(document).one('click.soundUnlock', function (e) {
-    // si on clique sur le bouton son, on laisse ce bouton gérer
-    if ($(e.target).closest('.btn-song').length) return;
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  });
 
   // Débloquer la musique au premier clic utilisateur
   $(document).one("click", function () {
     if (!musicStarted) {
       music.volume = 0.5;
-      music.play()
-        .then(() => { musicStarted = true; console.log('▶️ autoplay débloqué'); })
-        .catch(err => console.log('unlock error:', err));
+      music.play().catch(err => console.log(err));
+      musicStarted = true;
     }
   });
 
@@ -113,33 +97,19 @@ $(document).ready(function () {
   const API = "https://www.themealdb.com/api/json/v1/1";
 
   // INGREDIENTS
+  let ALL_INGREDIENTS = [];
+  let LIST_ALREADY_LOADED = false;
 
-  let ALL_INGREDIENTS = [];  // liste des ingrédients
-  let LIST_ALREADY_LOADED = false; // pour éviter de recharger 2 fois
-
-  // Permet de charger une seule fois la liste des ingrédients
   async function loadIngredientsOnce() {
-    if (LIST_ALREADY_LOADED) {
-      return;
-    }
+    if (LIST_ALREADY_LOADED) return;
     try {
       const response = await fetch(API + "/list.php?i=list");
-      if (!response.ok) {
-        throw new Error("Erreur HTTP " + response.status);
-      }
+      if (!response.ok) throw new Error("Erreur HTTP " + response.status);
       const data = await response.json();
-
-      const brut = data.meals || []; // "brut" correspond à la liste brute des ingrédients donnée par l'API
-
-      // Permet de récupérer les noms et nettoyer la liste
+      const brut = data.meals || [];
       ALL_INGREDIENTS = brut
-        .map(function (item) {
-          return (item.strIngredient || "");
-        })
-        .sort(function (a, b) {
-          return a.localeCompare(b);
-        }); // Tri alphabétique
-
+        .map(item => item.strIngredient || "")
+        .sort((a, b) => a.localeCompare(b));
       LIST_ALREADY_LOADED = true;
       console.log("Ingrédients chargés :", ALL_INGREDIENTS.length);
     } catch (error) {
@@ -157,8 +127,8 @@ $(document).ready(function () {
     const data = await response.json();
     const rawOriginList = data.meals || [];
     ALL_ORIGINS = rawOriginList
-      .map(function (item) { return (item.strArea || ""); })
-      .sort(function (a, b) { return a.localeCompare(b); });
+      .map(item => item.strArea || "")
+      .sort((a, b) => a.localeCompare(b));
     ORIGINS_ALREADY_LOADED = true;
   }
 
