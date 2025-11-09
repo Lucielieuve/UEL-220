@@ -75,22 +75,23 @@ $(document).ready(function () {
   });
 
   // === GESTION DU SON ===
-  $(".btn-song").click(function () {
-    const icon = $(this).find(".song-img");
+  $('.btn-song')
+  .off('click.sound') // empêche les doublons
+  .on('click.sound', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!music) return console.warn('Audio introuvable');
 
     if (music.paused) {
-      music.play();
+      music.muted = false;
+      music.volume = 0.5;
+      music.play()
+        .then(() => console.log('▶️ playing'))
+        .catch(err => console.log('play error:', err));
     } else {
       music.pause();
-    }
-  });
-
-  // ✅ Débloquer la musique au premier clic utilisateur
-  $(document).one("click", function () {
-    if (!musicStarted) {
-      music.volume = 0.5;
-      music.play().catch(err => console.log(err));
-      musicStarted = true;
+      console.log('⏸️ paused');
     }
   });
 
