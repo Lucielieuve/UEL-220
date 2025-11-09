@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
   let musicStarted = false;
   const music = $("#background-music")[0];
@@ -26,8 +26,8 @@ $(document).ready(function() {
         clearInterval(BarreInterval);
 
         // Transition vers page cible
-        setTimeout(function() {
-          $(".loading").fadeOut(600, function() {
+        setTimeout(function () {
+          $(".loading").fadeOut(600, function () {
             $(sectionCible).css("display", "flex").hide().fadeIn(600);
           });
         }, 300);
@@ -37,15 +37,15 @@ $(document).ready(function() {
 
   //*** BARRE DE PROGRESSION FONCTIONNEMENT***//
   let progress = 0;
-  const interval = setInterval(function() {
+  const interval = setInterval(function () {
     progress += 1;
     $("#progress").css("width", progress + "%");
 
     if (progress >= 100) {
       clearInterval(interval);
 
-      setTimeout(function() {
-        $(".loading").fadeOut(600, function() {
+      setTimeout(function () {
+        $(".loading").fadeOut(600, function () {
           $(".accueil").css("display", "flex").hide().fadeIn(600);
 
           // Lancer la musique seulement au premier chargement
@@ -65,36 +65,33 @@ $(document).ready(function() {
   });
 
   //*** BOUTONS CHOISIR POUR MOI***//
-  $(".btn-aleatoire").on("click", function() {
+  $(".btn-aleatoire").on("click", function () {
     afficherSection(".section-recette-ingredients");
   });
 
   //*** BOUTON ACCUEIL PAGE RECETTE ***//
-  $(".btn-accueil").click(function() {
+  $(".btn-accueil").click(function () {
     location.reload();
   });
 
   // === GESTION DU SON ===
-$(".btn-song").click(function() {
-  const icon = $(this).find(".song-img");
+  $(".btn-song").click(function () {
+    const icon = $(this).find(".song-img");
 
-  if (music.paused) {
-    music.play();
-  } else {
-    music.pause();
-  }
+    if (music.paused) {
+      music.play();
+    } else {
+      music.pause();
+    }
+  
 
-
-// Débloquer la musique au premier clic utilisateur
+// ✅ Débloquer la musique au premier clic utilisateur
 $(document).one("click", function() {
   if (!musicStarted) {
     music.volume = 0.5;
     music.play().catch(err => console.log(err));
     musicStarted = true;
   }
-});
-
-
 });
 
 // Appel de l'API
@@ -108,7 +105,7 @@ let LIST_ALREADY_LOADED = false; // pour éviter de recharger 2 fois
 // Permet de charger une seule fois la liste des ingrédients
 async function loadIngredientsOnce() {
   if (LIST_ALREADY_LOADED) {
-    return; 
+    return;
   }
   try {
     const response = await fetch(API + "/list.php?i=list");
@@ -121,10 +118,10 @@ async function loadIngredientsOnce() {
 
     // Permet de récupérer les noms et nettoyer la liste
     ALL_INGREDIENTS = brut
-      .map(function(item) {
+      .map(function (item) {
         return (item.strIngredient || "");
       })
-      .sort(function(a, b) { 
+      .sort(function (a, b) {
         return a.localeCompare(b);
       }); // Tri alphabétique
 
@@ -145,8 +142,8 @@ async function loadOriginsOnce() {
   const data = await response.json();
   const rawOriginList = data.meals || [];
   ALL_ORIGINS = rawOriginList
-    .map(function(item){ return (item.strArea || ""); })       
-    .sort(function(a,b){ return a.localeCompare(b); });
+    .map(function (item) { return (item.strArea || ""); })
+    .sort(function (a, b) { return a.localeCompare(b); });
   ORIGINS_ALREADY_LOADED = true;
 }
 
@@ -198,14 +195,14 @@ function addChip(chipsBox, name, maxChips) {
 }
 
 function setupPicker(inputId, suggId, chipsId, maxChips) {
-  
+
   const input = document.querySelector("#" + inputId);
   const suggBox = document.querySelector("#" + suggId);
   const chipsBox = document.querySelector("#" + chipsId);
 
   let currentSuggestions = []; // affiche la liste des suggestions
   let highlightedIndex = -1;
-  
+
   // Afficher la liste de suggestions
   function renderSuggestions(list) {
     currentSuggestions = list.slice(0, 5); // Limite à 5 éléments
@@ -233,7 +230,7 @@ function setupPicker(inputId, suggId, chipsId, maxChips) {
       item.textContent = name;
 
       // Clic sur une suggestion
-      item.addEventListener("click", function() {
+      item.addEventListener("click", function () {
         choose(name);
       });
 
@@ -255,7 +252,7 @@ function setupPicker(inputId, suggId, chipsId, maxChips) {
     const query = input.value.toLowerCase();
 
     // Garde les ingrédients qui contiennent le texte saisi
-    const filtered = ALL_INGREDIENTS.filter(function(name) {
+    const filtered = ALL_INGREDIENTS.filter(function (name) {
       return name.toLowerCase().includes(query);
     });
 
@@ -272,19 +269,19 @@ function setupPicker(inputId, suggId, chipsId, maxChips) {
 
   if (input) {
     // Au premier focus on charge la liste depuis l’API puis on propose des suggestions
-    input.addEventListener("focus", function() {
-      loadIngredientsOnce().then(function() {
+    input.addEventListener("focus", function () {
+      loadIngredientsOnce().then(function () {
         updateSuggestions();
       });
     });
 
     // Met à jour les suggestions quand on écrit
-    input.addEventListener("input", function() {
+    input.addEventListener("input", function () {
       updateSuggestions();
     });
 
     // Navigation pour les suggestions : flèches, entrée
-    input.addEventListener("keydown", function(e) {
+    input.addEventListener("keydown", function (e) {
       if (e.key === "ArrowDown") {
         e.preventDefault();
         highlightedIndex = (highlightedIndex + 1) % currentSuggestions.length;
@@ -305,9 +302,9 @@ function setupPicker(inputId, suggId, chipsId, maxChips) {
   }
 
   // Ferme la liste si on clique en dehors
-  document.addEventListener("click", function(e) {
+  document.addEventListener("click", function (e) {
     const clickDansInput = (e.target === input);
-    const clickDansSugg  = suggBox.contains(e.target);
+    const clickDansSugg = suggBox.contains(e.target);
     if (!clickDansInput && !clickDansSugg) {
       renderSuggestions([]);
     }
@@ -315,7 +312,7 @@ function setupPicker(inputId, suggId, chipsId, maxChips) {
 
   // Supprimer une chip si on clique sur la croix
   if (chipsBox) {
-    chipsBox.addEventListener("click", function(e) {
+    chipsBox.addEventListener("click", function (e) {
       const bouton = e.target;
       if (bouton.classList.contains("remove-chip")) {
         const chip = bouton.closest(".ingredient-chip");
@@ -353,10 +350,10 @@ function setupOriginPicker() {
     suggBox.innerHTML = "";
     for (let i = 0; i < currentSuggestions.length; i++) {
       const name = currentSuggestions[i];
-      const row = createElement("div","suggestion-item");
+      const row = createElement("div", "suggestion-item");
       row.setAttribute("aria-selected", i === highlightedIndex ? "true" : "false");
       row.textContent = name;
-      row.addEventListener("click", function(){ choose(name); });
+      row.addEventListener("click", function () { choose(name); });
       suggBox.appendChild(row);
     }
   }
@@ -373,12 +370,12 @@ function setupOriginPicker() {
   function updateSuggestions() {
     const q = input.value.toLowerCase().trim();
     if (!q) { renderSuggestions([]); return; }
-    const list = ALL_ORIGINS.filter(function(n){ return n.toLowerCase().includes(q); });
+    const list = ALL_ORIGINS.filter(function (n) { return n.toLowerCase().includes(q); });
     renderSuggestions(list);
   }
 
   function setOriginChip(name) {
-    chipBox.innerHTML = ""; 
+    chipBox.innerHTML = "";
     const chip = createElement("div", "ingredient-chip origin-chip");
     const label = createElement("span");
     label.textContent = name;
@@ -399,11 +396,11 @@ function setupOriginPicker() {
   }
 
   if (input) {
-    input.addEventListener("focus", function(){
+    input.addEventListener("focus", function () {
       loadOriginsOnce().then(updateSuggestions);
     });
     input.addEventListener("input", updateSuggestions);
-    input.addEventListener("keydown", function(e){
+    input.addEventListener("keydown", function (e) {
       if (e.key === "Escape") { renderSuggestions([]); return; }
       if (!currentSuggestions.length) return;
       if (e.key === "ArrowDown") { e.preventDefault(); highlightedIndex = (highlightedIndex + 1) % currentSuggestions.length; updateHighlightVisual(); }
@@ -412,15 +409,15 @@ function setupOriginPicker() {
     });
   }
 
-  chipBox.addEventListener("click", function(e){
+  chipBox.addEventListener("click", function (e) {
     if (e.target.classList.contains("remove-chip")) {
-      chipBox.innerHTML = ""; 
+      chipBox.innerHTML = "";
     }
   });
 
-  document.addEventListener("click", function(e){
+  document.addEventListener("click", function (e) {
     const inInput = (e.target === input);
-    const inSugg  = suggBox.contains(e.target);
+    const inSugg = suggBox.contains(e.target);
     if (!inInput && !inSugg) renderSuggestions([]);
   });
 }
@@ -429,56 +426,79 @@ setupOriginPicker();
 
 // Fonctionnalité recette / ingrédients
 
-    // Map des zones -> codes drapeaux
-    function countryCode(area) {
-        const map = {
-            American: 'us', British: 'gb', Canadian: 'ca', Chinese: 'cn',
-            Croatian: 'hr', Dutch: 'nl', Egyptian: 'eg', Filipino: 'ph',
-            French: 'fr', Greek: 'gr', Indian: 'in', Irish: 'ie',
-            Italian: 'it', Jamaican: 'jm', Japanese: 'jp', Kenyan: 'ke',
-            Malaysian: 'my', Mexican: 'mx', Moroccan: 'ma', Polish: 'pl',
-            Portuguese: 'pt', Russian: 'ru', Spanish: 'es', Thai: 'th',
-            Tunisian: 'tn', Turkish: 'tr', Vietnamese: 'vn'
-        };
-        return map[area] || 'un'; // fallback ONU
-    }
+$(".btn-accueil").on('click', function () {
+        $(".accueil").fadeIn();
+        $(this).toggleClass('active');
+    });
 
-    // Bouton #2 : recette aléatoire
-    $('.recette-btns-item').eq(1).on('click', function () {
-        // (facultatif) état chargement
-        $('.recette-titre').text('Chargement...');
-        $('.liste-ingredients').empty();
+    const $sectionRecette = $('.section-recette-ingredients').hide();
 
-        $.getJSON('https://www.themealdb.com/api/json/v1/1/random.php', function (data) {
-            const meal = data?.meals?.[0];
-            if (!meal) return;
+    // Affiche la section + (optionnel) bouton actif
+    $('.recette-btns-item').on('click', function () {
+        $sectionRecette.fadeIn();
+        $(this).toggleClass('active');
+    });
 
-            // Titre / image / description
-            $('.img-recette').attr('src', meal.strMealThumb || '');
-            $('.recette-titre').text(meal.strMeal || '');
-            $('.recette-description').text(meal.strInstructions || '');
+// Map des zones -> codes drapeaux
+function countryCode(area) {
+  const map = {
+    American: 'us', British: 'gb', Canadian: 'ca', Chinese: 'cn',
+    Croatian: 'hr', Dutch: 'nl', Egyptian: 'eg', Filipino: 'ph',
+    French: 'fr', Greek: 'gr', Indian: 'in', Irish: 'ie',
+    Italian: 'it', Jamaican: 'jm', Japanese: 'jp', Kenyan: 'ke',
+    Malaysian: 'my', Mexican: 'mx', Moroccan: 'ma', Polish: 'pl',
+    Portuguese: 'pt', Russian: 'ru', Spanish: 'es', Thai: 'th',
+    Tunisian: 'tn', Turkish: 'tr', Vietnamese: 'vn'
+  };
+  return map[area] || 'un'; // renvoie un drapeau de l'ONU si pas trouvé
+};
 
-            // Drapeau pays
-            const area = meal.strArea || '';
-            const flagUrl = `https://flagcdn.com/48x36/${countryCode(area)}.png`;
-            $('.logo-pays').attr('src', flagUrl).attr('alt', area);
+// Boutons recette aléatoire
 
-            // Ingrédients : on vide puis on (re)ajoute
-            const $ul = $('.ul-ingredients').empty();
-            for (let i = 1; i <= 20; i++) {
-                const ingredient = (meal[`strIngredient${i}`] || '').trim();
-                const measure = (meal[`strMeasure${i}`] || '').trim();
-                if (!ingredient) break;
+$('.btn-aleatoire').on('click', () => {
+  remplirRecette('https://www.themealdb.com/api/json/v1/1/random.php');
+});
 
-                const imgUrl = `https://www.themealdb.com/images/ingredients/${encodeURIComponent(ingredient)}.png`;
 
-                const $li = $(`
-          <li class="li-ingredients">
-            <img class="img-ingredient" src="${imgUrl}" alt="${ingredient}">
-            <p class="nom-ingredient">${ingredient}</p>
-            <p class="quantite">${measure}</p>
-          </li>
-        `);
+async function remplirRecette(url) {
+  // État de chargement + vider les champs
+  $('.recette-titre').text('Chargement...');
+  $('.ul-ingredients').empty();
+
+  try {
+    const res = await fetch('https://www.themealdb.com/api/json/v1/1/random.php');
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    const meal = data?.meals?.[0];
+    if (!meal) throw new Error('Aucune recette trouvée');
+
+    // Remplissage du contenu
+    $('.img-recette').attr('src', meal.strMealThumb || '');
+    $('.recette-titre').text(meal.strMeal || '');
+    $('.recette-description').text(meal.strInstructions || '');
+
+    // Drapeau du pays
+    const area = meal.strArea || '';
+    const flagUrl = `https://flagcdn.com/48x36/${countryCode(area)}.png`;
+    $('.logo-pays').attr('src', flagUrl).attr('alt', area);
+
+    // Ingrédients
+    const $ul = $('.ul-ingredients').empty();
+    for (let i = 1; i <= 20; i++) {
+      const ingredient = (meal[`strIngredient${i}`] || '').trim();
+      const measure = (meal[`strMeasure${i}`] || '').trim();
+      if (!ingredient) break;
+
+      const imgUrl = `https://www.themealdb.com/images/ingredients/${encodeURIComponent(ingredient)}.png`;
+
+      const $li = $(`
+        <li class="li-ingredients">
+          <img class="img-ingredient" src="${imgUrl}" alt="${ingredient}">
+          <p class="nom-ingredient">${ingredient}</p>
+          <p class="quantite">${measure}</p>
+        </li>
+      `);
 
                 $ul.append($li);
             }
@@ -486,104 +506,3 @@ setupOriginPicker();
             $('.recette-titre').text('Erreur de chargement');
         });
     });
-
-
-
-
-
-    //*** BOUTON RECHERCHER UNE RECETTE ***//
-    
-    // Lorsque l'on clique sur le bouton trouver une recette on lance une fonction asynchrone
-   $('.recette-btns-item').not('.btn-aleatoire').on('click', async function () {
-    
-    // Affichage de la page de chargement
-    afficherSection(".section-recette-ingredients");
-
-    // Recuperation des valeurs du formulaire + assignation à une constante dediée
-    const want = Array.from(document.querySelectorAll("#selected-ingredients .ingredient-chip span")).map(el => el.textContent);
-    const dont = Array.from(document.querySelectorAll("#excluded-ingredients .ingredient-chip span")).map(el => el.textContent);
-    const origin = document.querySelector("#origin-selected .ingredient-chip span")?.textContent || "";
-
-    // Si aucun ingrédient n'a été selectionnée , on renvoie : 
-    if (!want.length) {
-        $('.recette-titre').text("Veuillez choisir au moins un ingredient !");
-        return;
-    }
-
-    try {
-        // Recherche d'une recette à l'aide l'api avec le nom de l'élement selectionné et attribué à want 
-        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(want[0])}`);
-        const data = await response.json();
-        const meals = data.meals || [];
-        // Si aucune recette trouvée, on renvoie : 
-        if (!meals.length) {
-            $('.recette-titre').text("Aucune recette trouvee");
-            return;
-        }
-
-        // On récupère ici toutes les recettes comprenant cette ingrédients dans un tableau
-        const detailedMeals = await Promise.all(meals.map(async meal => {
-            const detailResp = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
-            const detailData = await detailResp.json();
-            return detailData.meals[0];
-        }));
-
-        // On filtre le tableau pour savoir quelles recettes parmi celles selectionnées coorespondent avec les ingredient exclu et le pays
-        const filteredMeals = detailedMeals.filter(meal => {
-            const ingredients = [];
-            for (let i = 1; i <= 20; i++) {
-                if (meal[`strIngredient${i}`]) ingredients.push(meal[`strIngredient${i}`].toLowerCase());
-            }
-
-            // on verifie les ingredient(s) exclue
-            if (dont.some(d => ingredients.includes(d.toLowerCase()))) return false;
-
-            // on verifie l'origine des recettes 
-            if (origin && meal.strArea.toLowerCase() !== origin.toLowerCase()) return false;
-
-            return true;
-        });
-
-        //Si après avoir filtrer et que le tableau et vide on renvoie :
-
-        if (!filteredMeals.length) {
-            $('.recette-titre').text("Aucune recette trouvee");
-            return;
-        }
-
-        // Sinon on choisit au hasard une recette parmi celles qui reste dans le tableau
-        const meal = filteredMeals[Math.floor(Math.random() * filteredMeals.length)];
-
-        // On affiche la recette dans les élements associés
-        $('.img-recette').attr('src', meal.strMealThumb || '');
-        $('.recette-titre').text(meal.strMeal || '');
-        $('.recette-description').text(meal.strInstructions || '');
-        const flagUrl = `https://flagcdn.com/48x36/${countryCode(meal.strArea)}.png`;
-        $('.logo-pays').attr('src', flagUrl).attr('alt', meal.strArea);
-
-        const $ul = $('.ul-ingredients').empty();
-        for (let i = 1; i <= 20; i++) {
-            const ingredient = (meal[`strIngredient${i}`] || '').trim();
-            const measure = (meal[`strMeasure${i}`] || '').trim();
-            if (!ingredient) break;
-
-            const imgUrl = `https://www.themealdb.com/images/ingredients/${encodeURIComponent(ingredient)}.png`;
-
-            const $li = $(`
-                <li class="li-ingredients">
-                    <img class="img-ingredient" src="${imgUrl}" alt="${ingredient}">
-                    <p class="nom-ingredient">${ingredient}</p>
-                    <p class="quantite">${measure}</p>
-                </li>
-            `);
-            $ul.append($li);
-        }
-
-        // Si le chargement de la recette n'a pas fonctionné on renvoie :
-    } catch (error) {
-        console.error(error);
-        $('.recette-titre').text('Erreur de chargement');
-    }
-});
-
-});
