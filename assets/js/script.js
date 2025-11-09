@@ -48,7 +48,7 @@ $(document).ready(function () {
         $(".loading").fadeOut(600, function () {
           $(".accueil").css("display", "flex").hide().fadeIn(600);
 
-          // 🎵 Lancer la musique seulement au premier chargement
+          // Lancer la musique seulement au premier chargement
           if (!musicStarted) {
             music.volume = 0.5;
             music.play().catch(err => console.log("Lecture auto bloquée :", err));
@@ -87,11 +87,11 @@ $(document).ready(function () {
       music.muted = false;
       music.volume = 0.5;
       music.play()
-        .then(() => console.log('▶️ playing'))
+        .then(() => console.log('Audio allumé'))
         .catch(err => console.log('play error:', err));
     } else {
       music.pause();
-      console.log('⏸️ paused');
+      console.log('Audio coupé');
     }
   });
 
