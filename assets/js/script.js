@@ -48,7 +48,7 @@ $(document).ready(function() {
         $(".loading").fadeOut(600, function() {
           $(".accueil").css("display", "flex").hide().fadeIn(600);
 
-          // 🎵 Lancer la musique seulement au premier chargement
+          // Lancer la musique seulement au premier chargement
           if (!musicStarted) {
             music.volume = 0.5;
             music.play().catch(err => console.log("Lecture auto bloquée :", err));
@@ -83,9 +83,9 @@ $(".btn-song").click(function() {
   } else {
     music.pause();
   }
-});
 
-// ✅ Débloquer la musique au premier clic utilisateur
+
+// Débloquer la musique au premier clic utilisateur
 $(document).one("click", function() {
   if (!musicStarted) {
     music.volume = 0.5;
@@ -427,22 +427,7 @@ function setupOriginPicker() {
 
 setupOriginPicker();
 
-
-
 // Fonctionnalité recette / ingrédients
-
-$(".btn-accueil").on('click', function () {
-        $(".accueil").fadeIn();
-        $(this).toggleClass('active');
-    });
-
-    const $sectionRecette = $('.section-recette-ingredients').hide();
-
-    // Affiche la section + (optionnel) bouton actif
-    $('.recette-btns-item').on('click', function () {
-        $sectionRecette.fadeIn();
-        $(this).toggleClass('active');
-    });
 
     // Map des zones -> codes drapeaux
     function countryCode(area) {
@@ -501,3 +486,104 @@ $(".btn-accueil").on('click', function () {
             $('.recette-titre').text('Erreur de chargement');
         });
     });
+
+
+
+
+
+    //*** BOUTON RECHERCHER UNE RECETTE ***//
+    
+    // Lorsque l'on clique sur le bouton trouver une recette on lance une fonction asynchrone
+   $('.recette-btns-item').not('.btn-aleatoire').on('click', async function () {
+    
+    // Affichage de la page de chargement
+    afficherSection(".section-recette-ingredients");
+
+    // Recuperation des valeurs du formulaire + assignation à une constante dediée
+    const want = Array.from(document.querySelectorAll("#selected-ingredients .ingredient-chip span")).map(el => el.textContent);
+    const dont = Array.from(document.querySelectorAll("#excluded-ingredients .ingredient-chip span")).map(el => el.textContent);
+    const origin = document.querySelector("#origin-selected .ingredient-chip span")?.textContent || "";
+
+    // Si aucun ingrédient n'a été selectionnée , on renvoie : 
+    if (!want.length) {
+        $('.recette-titre').text("Veuillez choisir au moins un ingredient !");
+        return;
+    }
+
+    try {
+        // Recherche d'une recette à l'aide l'api avec le nom de l'élement selectionné et attribué à want 
+        const response = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${encodeURIComponent(want[0])}`);
+        const data = await response.json();
+        const meals = data.meals || [];
+        // Si aucune recette trouvée, on renvoie : 
+        if (!meals.length) {
+            $('.recette-titre').text("Aucune recette trouvee");
+            return;
+        }
+
+        // On récupère ici toutes les recettes comprenant cette ingrédients dans un tableau
+        const detailedMeals = await Promise.all(meals.map(async meal => {
+            const detailResp = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`);
+            const detailData = await detailResp.json();
+            return detailData.meals[0];
+        }));
+
+        // On filtre le tableau pour savoir quelles recettes parmi celles selectionnées coorespondent avec les ingredient exclu et le pays
+        const filteredMeals = detailedMeals.filter(meal => {
+            const ingredients = [];
+            for (let i = 1; i <= 20; i++) {
+                if (meal[`strIngredient${i}`]) ingredients.push(meal[`strIngredient${i}`].toLowerCase());
+            }
+
+            // on verifie les ingredient(s) exclue
+            if (dont.some(d => ingredients.includes(d.toLowerCase()))) return false;
+
+            // on verifie l'origine des recettes 
+            if (origin && meal.strArea.toLowerCase() !== origin.toLowerCase()) return false;
+
+            return true;
+        });
+
+        //Si après avoir filtrer et que le tableau et vide on renvoie :
+
+        if (!filteredMeals.length) {
+            $('.recette-titre').text("Aucune recette trouvee");
+            return;
+        }
+
+        // Sinon on choisit au hasard une recette parmi celles qui reste dans le tableau
+        const meal = filteredMeals[Math.floor(Math.random() * filteredMeals.length)];
+
+        // On affiche la recette dans les élements associés
+        $('.img-recette').attr('src', meal.strMealThumb || '');
+        $('.recette-titre').text(meal.strMeal || '');
+        $('.recette-description').text(meal.strInstructions || '');
+        const flagUrl = `https://flagcdn.com/48x36/${countryCode(meal.strArea)}.png`;
+        $('.logo-pays').attr('src', flagUrl).attr('alt', meal.strArea);
+
+        const $ul = $('.ul-ingredients').empty();
+        for (let i = 1; i <= 20; i++) {
+            const ingredient = (meal[`strIngredient${i}`] || '').trim();
+            const measure = (meal[`strMeasure${i}`] || '').trim();
+            if (!ingredient) break;
+
+            const imgUrl = `https://www.themealdb.com/images/ingredients/${encodeURIComponent(ingredient)}.png`;
+
+            const $li = $(`
+                <li class="li-ingredients">
+                    <img class="img-ingredient" src="${imgUrl}" alt="${ingredient}">
+                    <p class="nom-ingredient">${ingredient}</p>
+                    <p class="quantite">${measure}</p>
+                </li>
+            `);
+            $ul.append($li);
+        }
+
+        // Si le chargement de la recette n'a pas fonctionné on renvoie :
+    } catch (error) {
+        console.error(error);
+        $('.recette-titre').text('Erreur de chargement');
+    }
+});
+
+});

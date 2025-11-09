@@ -38,7 +38,7 @@ h1{
 body{
     margin:0; font-family:"Nunito", ui-sans-serif, system-ui; 
     background:var(--background); 
-    color:var(--text)
+    color:var(--text);
     background-color: #febeb2; /* rose foncé */
     background-image:
     linear-gradient(90deg, rgba(255,255,255,0.35) 50%, transparent 50%),
