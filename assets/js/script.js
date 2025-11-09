@@ -48,7 +48,7 @@ $(document).ready(function () {
         $(".loading").fadeOut(600, function () {
           $(".accueil").css("display", "flex").hide().fadeIn(600);
 
-          // 🎵 Lancer la musique seulement au premier chargement
+          // Lancer la musique seulement au premier chargement
           if (!musicStarted) {
             music.volume = 0.5;
             music.play().catch(err => console.log("Lecture auto bloquée :", err));
@@ -75,22 +75,23 @@ $(document).ready(function () {
   });
 
   // === GESTION DU SON ===
-  $(".btn-song").click(function () {
-    const icon = $(this).find(".song-img");
+  $('.btn-song')
+  .off('click.sound')
+  .on('click.sound', function (e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (!music) return console.warn('Audio introuvable');
 
     if (music.paused) {
-      music.play();
+      music.muted = false;
+      music.volume = 0.5;
+      music.play()
+        .then(() => console.log('Audio allumé'))
+        .catch(err => console.log('play error:', err));
     } else {
       music.pause();
-    }
-  });
-
-  // ✅ Débloquer la musique au premier clic utilisateur
-  $(document).one("click", function () {
-    if (!musicStarted) {
-      music.volume = 0.5;
-      music.play().catch(err => console.log(err));
-      musicStarted = true;
+      console.log('Audio coupé');
     }
   });
 
